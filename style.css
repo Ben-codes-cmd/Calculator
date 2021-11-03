@@ -1,0 +1,2 @@
+/* HTML element will automatically inherit from body if not specified*/
+body { min-height: 100vh; }
