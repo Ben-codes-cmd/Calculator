@@ -1,2 +1,102 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* HTML element will automatically inherit from body if not specified*/
-body { min-height: 100vh; }
+html{
+    background-color: lightpink;
+}
+
+body{
+    min-height: 100vh; 
+    background-color: lightblue;
+}
+
+.wrapper{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator {
+    background-color: gray;
+    border-radius: 15px;
+    height: 450px;
+    width: 338px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+.display{
+    border-radius: 20px;
+    background-color: lightblue;
+    flex: 1;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 5px;
+}
+
+.buttons{
+    flex: 5;
+    display: flex;
+    padding: 5px;
+    gap: 15px;
+}
+
+.left-buttons{
+    flex: 4;
+    background-color: lightgray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 3px;
+}
+
+.right-buttons{
+    background-color: lightgray;
+    display: flex;
+    flex: 1;
+    border-radius: 10px;
+}
+
+.rowLeft{
+    display: flex;
+    flex: 1;
+    gap: 3px;
+}
+
+.rowRight{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 3px;
+    padding: 3px;
+}
+
+.button{
+    font-size: 25px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: gray;
+    color: white;
+}
+
+/* generate buttons in js */
+
+@media (min-width: 700px){
+    .calculator {
+        height: 600px;
+        width: 450px;
+    }
+}
