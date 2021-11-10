@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mohave:wght@500&display=swap');
+
 * { 
     margin: 0;
     padding: 0;
@@ -6,12 +8,11 @@
 
 /* HTML element will automatically inherit from body if not specified*/
 html{
-    background-color: lightpink;
 }
 
 body{
-    min-height: 100vh; 
-    background-color: lightblue;
+    min-height: 100vh;
+    background-color: lightgray;
 }
 
 .wrapper{
@@ -41,6 +42,8 @@ body{
     justify-content: right;
     align-items: center;
     padding: 5px;
+    font-size: 45px;
+    font-family: 'Mohave', sans-serif;
 }
 
 .buttons{
