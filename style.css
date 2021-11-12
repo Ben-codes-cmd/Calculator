@@ -101,6 +101,10 @@ body{
     color: white;
 }
 
+.button:hover{
+    scale: .9;
+}
+
 /* generate buttons in js */
 
 @media (min-width: 700px){
