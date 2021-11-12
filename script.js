@@ -46,16 +46,24 @@ function operate(x, y, operator){ // make return string?
         case "^":
             res = power(x, y);
     }
-    return res;
+    return res.toString();
 }
 
-// generate buttons on calc
-// 0-9, +, -, *, /, enter
+function operateSingleOperand(x, operator){
+    let res;
+    switch(operator){
+        case "!":
+            res = factorial(x);
+            break;
+    }
+    return res.toString();
+}
 
 addEventListener("keydown", (e) => processValue(e));
 const LEFT = document.querySelector(".left-buttons");
 const RIGHT = document.querySelector(".right-buttons");
-const SCREEN = document.querySelector(".display");
+createDisplay();
+const DIGITS = document.querySelectorAll(".display div");
 
 let ans;
 let firstOperand = "";
@@ -141,11 +149,12 @@ function processValue(e){
                 operator = val;
                 break;
             case "^x":
+            case "^":
                 operator = "^";
                 break;
             case "!":
-                if(!operator){
-                    ans = factorial(firstOperand);
+                if(!secondOperand){
+                    ans = operateSingleOperand(firstOperand, val);
                     makeCompoundExpression();
                 }
                 break;
@@ -169,7 +178,7 @@ function processValue(e){
                 if(secondOperand){
                     ans = operate(parse(firstOperand), parse(secondOperand), operator);
                 }else{
-                    ans = parse(firstOperand);
+                    ans = parse(firstOperand).toString();
                 }
                 makeCompoundExpression();
                 break;
@@ -193,6 +202,7 @@ function makeCompoundExpression(){
 }
 
 function updateDisplay(){
+    // max 19 characters
 
     if(secondOperand){
         display = firstOperand + operator + secondOperand;
@@ -201,11 +211,43 @@ function updateDisplay(){
         display = firstOperand + operator;
     }
     else if(firstOperand){
+        console.log(typeof firstOperand);
         display = firstOperand;
     }else{
         display = "";
     }
-    SCREEN.innerHTML = display;
+    if (display.length > 19){
+        if(display.indexOf("e") >=0){
+            // trim decimal with scientific notation
+            display = display.substr(0, display.indexOf("e")-(display.length-19)) + display.substr(display.indexOf("e"));
+        }else{
+            display = display.substr(display.length - 19);
+        }
+    }
+    setDisplay(display); // use set display
+}
+
+function createDisplay(){
+    const SCREEN = document.querySelector(".display");
+    // create 19 boxes to space digits evenly
+    for(let i = 0; i < 19; i++){
+        let digit = document.createElement("div");
+        SCREEN.appendChild(digit);
+    }
+}
+
+function setDisplay(text){
+    // takes in a refined <20 digit text
+
+    // reset values from previous frame
+    for(let i = 0; i < 19; i++){
+        DIGITS[i].innerHTML = "";
+    }
+
+    // loop through text and position from left to right
+    for(let i = 0; i < text.length; i++){
+        DIGITS[19 - text.length + i].innerHTML = text[i];
+    }
 }
 
 function parse(str){
@@ -215,5 +257,6 @@ function parse(str){
     }
     return parseInt(str);
 }
+
 // driver code
 generateButtons();

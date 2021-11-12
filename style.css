@@ -7,8 +7,6 @@
 }
 
 /* HTML element will automatically inherit from body if not specified*/
-html{
-}
 
 body{
     min-height: 100vh;
@@ -34,15 +32,23 @@ body{
     gap: 10px;
     padding: 10px;
 }
+
 .display{
     border-radius: 20px;
+    padding: 5px;
     background-color: lightblue;
+    flex: 1;
+    display: flex;
+}
+
+.display div{
+    background-color: inherit;
     flex: 1;
     display: flex;
     justify-content: right;
     align-items: center;
-    padding: 5px;
-    font-size: 45px;
+    border-radius: inherit;
+    font-size: 30px;
     font-family: 'Mohave', sans-serif;
 }
 
@@ -101,5 +107,8 @@ body{
     .calculator {
         height: 600px;
         width: 450px;
+    }
+    .display div{
+        font-size: 45px;
     }
 }
